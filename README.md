@@ -1,4 +1,4 @@
-Certainly! Here's the revised version of your project description with corrections and updates to use MySQL and Java Swing:
+
 
 # TimeTableGenerator
 
