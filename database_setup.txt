@@ -1,0 +1,155 @@
+-- Create Database
+CREATE DATABASE `TimeTable`;
+USE `TimeTable`;
+
+-- Admin Table
+CREATE TABLE `Admin` (
+    `AdminID` INT NOT NULL AUTO_INCREMENT,
+    `FirstName` NVARCHAR(50),
+    `LastName` NVARCHAR(50),
+    `Email` NVARCHAR(100),
+    PRIMARY KEY (`AdminID`),
+    UNIQUE KEY `UQ_AdminID` (`AdminID`)
+);
+
+-- BSE-2A Table
+CREATE TABLE `BSE_2A` (
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `CourseID` NVARCHAR(50) NOT NULL,
+    `RoomID` NVARCHAR(50) NOT NULL,
+    `TeacherID` NVARCHAR(50) NOT NULL,
+    `StartTime` NVARCHAR(50) NOT NULL,
+    `Day` NVARCHAR(50) NOT NULL,
+    PRIMARY KEY (`Id`)
+);
+
+-- BSE-2B Table
+CREATE TABLE `BSE_2B` (
+    `Id` INT NOT NULL AUTO_INCREMENT,
+    `CourseID` NVARCHAR(50) NOT NULL,
+    `RoomID` NVARCHAR(50) NOT NULL,
+    `TeacherID` NVARCHAR(50) NOT NULL,
+    `StartTime` NVARCHAR(50) NOT NULL,
+    `Day` NVARCHAR(50) NOT NULL,
+    PRIMARY KEY (`Id`)
+);
+
+-- Course Table
+CREATE TABLE `Course` (
+    `CourseID` INT NOT NULL AUTO_INCREMENT,
+    `CourseName` NVARCHAR(100) NOT NULL,
+    `CourseCode` NVARCHAR(50) NOT NULL,
+    `Description` NVARCHAR(255),
+    `CreditHours` INT,
+    PRIMARY KEY (`CourseID`),
+    UNIQUE KEY `UQ_CourseName` (`CourseName`),
+    UNIQUE KEY `UQ_CourseID` (`CourseID`),
+    UNIQUE KEY `UQ_CourseCode` (`CourseCode`)
+);
+
+-- Room Table
+CREATE TABLE `Room` (
+    `RoomID` INT NOT NULL AUTO_INCREMENT,
+    `RoomNumber` NVARCHAR(50) NOT NULL,
+    `Capacity` INT,
+    `Type` NVARCHAR(50),
+    PRIMARY KEY (`RoomID`)
+);
+
+-- Sections Table
+CREATE TABLE `Sections` (
+    `SectionID` INT NOT NULL AUTO_INCREMENT,
+    `SectionName` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`SectionID`)
+);
+
+-- Student Table
+CREATE TABLE `Student` (
+    `StudentID` INT NOT NULL AUTO_INCREMENT,
+    `FirstName` NVARCHAR(50),
+    `LastName` NVARCHAR(50),
+    `Email` NVARCHAR(100),
+    PRIMARY KEY (`StudentID`)
+);
+
+-- Teacher Table
+CREATE TABLE `Teacher` (
+    `TeacherID` INT NOT NULL AUTO_INCREMENT,
+    `FirstName` NVARCHAR(50),
+    `LastName` NVARCHAR(50),
+    `Email` NVARCHAR(100),
+    PRIMARY KEY (`TeacherID`)
+);
+
+-- User Table
+CREATE TABLE `User` (
+    `UserID` INT NOT NULL AUTO_INCREMENT,
+    `Username` NVARCHAR(50) NOT NULL,
+    `Password` NVARCHAR(50) NOT NULL,
+    `UserType` NVARCHAR(10) NOT NULL,
+    `ForeignID` INT NOT NULL,
+    PRIMARY KEY (`UserID`)
+);
+
+-- Insert Data into Admin
+INSERT INTO `Admin` (`FirstName`, `LastName`, `Email`) VALUES
+('Admin', 'One', 'admin1@example.com'),
+('admin', 'admin', 'admin'),
+('admin2', 'admin2', 'admin2');
+
+-- Insert Data into BSE-2A
+INSERT INTO `BSE_2A` (`CourseID`, `RoomID`, `TeacherID`, `StartTime`, `Day`) VALUES
+('101', '1', '101', '8:00:00', 'MONDAY');
+
+-- Insert Data into BSE-2B
+INSERT INTO `BSE_2B` (`CourseID`, `RoomID`, `TeacherID`, `StartTime`, `Day`) VALUES
+('101', '1', '101', '8:00:00', 'MONDAY');
+
+-- Insert Data into Course
+INSERT INTO `Course` (`CourseName`, `CourseCode`, `Description`, `CreditHours`) VALUES
+('Mathematics', 'Math-101', NULL, 2),
+('english', 'Eng-102', NULL, 2),
+('arabic', 'Ara-103', NULL, 2),
+('discrete Structures', 'DS-104', NULL, 2);
+
+-- Insert Data into Room
+INSERT INTO `Room` (`RoomNumber`, `Capacity`, `Type`) VALUES
+('34', 50, 'LAB'),
+('456', 50, 'LAB'),
+('01', 30, 'CLASS/ROOM'),
+('12', 101, 'LAB');
+
+-- Insert Data into Sections
+INSERT INTO `Sections` (`SectionName`) VALUES
+('BSE-2A'),
+('BSE-2B');
+
+-- Insert Data into Student
+INSERT INTO `Student` (`FirstName`, `LastName`, `Email`) VALUES
+('siawish', 'malik', 'malik@gmail.com'),
+('daniyal', 'qureshi', 'qureshi@gmail.com'),
+('amaan', 'ali', 'amaan@gmail.com'),
+('wedf', 'dsaz', 'edf'),
+('student','student','student'),
+('wridjs', 'yrfs', 'hedjsa');
+
+-- Insert Data into Teacher
+INSERT INTO `Teacher` (`FirstName`, `LastName`, `Email`) VALUES
+('ahmed', 'ahmed', 'ahmed'),
+('ali', 'ali', 'ali'),
+('Sir', 'Raja', ''),
+('ALI', 'ALO', 'LO'),
+('teacher', 'teacher', 'teacher');
+
+-- Insert Data into User
+INSERT INTO `User` (`Username`, `Password`, `UserType`, `ForeignID`) VALUES
+('admin', 'admin', 'Admin', 1),
+('ahmed', 'ahmed123', 'Teacher', 1),
+('ali', 'ali123', 'Teacher', 2),
+('siawish', 'siawish123', 'Student', 25),
+('daniyal', 'daniyal123', 'Student', 53),
+('amaan', 'amaan123', 'Student', 87),
+('teacher', 'teacher', 'Teacher', 999),
+('ali', 'ali', 'Teacher', 686),
+('ALI', 'ALI', 'Teacher', 686),
+('Sir Raja', '123', 'Teacher', 103);
